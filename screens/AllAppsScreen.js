@@ -12,8 +12,8 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-// Base URL for GitHub raw assets so Expo Snack doesn't throw asset upload errors during Git import
-const CDN_BASE = 'https://raw.githubusercontent.com/minhducanhhuy/mma-ex1/main/assets';
+// Permanent GitHub raw assets URL from commit history so Snack Git import succeeds without binary upload errors
+const CDN_BASE = 'https://raw.githubusercontent.com/minhducanhhuy/mma-ex1/cf4666d/assets';
 
 const getIcon = (filename) => ({
   uri: `${CDN_BASE}/${filename}`,
