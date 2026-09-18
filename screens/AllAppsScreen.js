@@ -12,6 +12,13 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
+// Base URL for GitHub raw assets so Expo Snack doesn't throw asset upload errors during Git import
+const CDN_BASE = 'https://raw.githubusercontent.com/minhducanhhuy/mma-ex1/main/assets';
+
+const getIcon = (filename) => ({
+  uri: `${CDN_BASE}/${filename}`,
+});
+
 export default function AllAppsScreen() {
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -24,28 +31,28 @@ export default function AllAppsScreen() {
           title: 'Approve Now',
           subtitle:
             'Notify managers of pending requests and allow managers to approve/reject requests from internal tools',
-          icon: require('../assets/ic_favourite_approve_now.png'),
+          icon: getIcon('ic_favourite_approve_now.png'),
         },
         {
           id: 'reward',
           title: 'Reward',
           subtitle:
             'Send colleagues a thank you note or reward Gold for exceptional contribution',
-          icon: require('../assets/ic_favourite_gst_recognition.png'),
+          icon: getIcon('ic_favourite_gst_recognition.png'),
         },
         {
           id: 'discipline',
           title: 'Discipline',
           subtitle:
             'Send a discipline warning to subordinates for violation of codes of conduct',
-          icon: require('../assets/ic_favourite_discipline.png'),
+          icon: getIcon('ic_favourite_discipline.png'),
         },
         {
           id: 'learning',
           title: 'Learning',
           subtitle:
             'View a list of mandatory, registered and suggested learning courses; check-in and send feedback for each course',
-          icon: require('../assets/ic_favourite_learning.png'),
+          icon: getIcon('ic_favourite_learning.png'),
         },
         {
           id: 'my_tasks',
@@ -63,40 +70,40 @@ export default function AllAppsScreen() {
           id: 'fpt_care',
           title: 'FPT Care',
           subtitle: 'FPT Care',
-          icon: require('../assets/ic_favourite_fpt_care.png'),
+          icon: getIcon('ic_favourite_fpt_care.png'),
         },
         {
           id: 'events',
           title: 'Events',
           subtitle:
             'Register, check-in, check-out, send feedback to company events and programs',
-          icon: require('../assets/ic_favourite_event.png'),
+          icon: getIcon('ic_favourite_event.png'),
         },
         {
           id: 'survey',
           title: 'Survey',
           subtitle:
             'Conduct and collect responses for company-wide or department-wide surveys',
-          icon: require('../assets/ic_favourite_survey.png'),
+          icon: getIcon('ic_favourite_survey.png'),
         },
         {
           id: 'fpt_dating',
           title: 'FPT Dating',
           subtitle: 'Dating feature.',
-          icon: require('../assets/ic_favourite_dating.png'),
+          icon: getIcon('ic_favourite_dating.png'),
         },
         {
           id: 'payslip',
           title: 'Payslip',
           subtitle: 'Payslip',
-          icon: require('../assets/ic_favourite_payslip.png'),
+          icon: getIcon('ic_favourite_payslip.png'),
         },
         {
           id: 'birthday',
           title: 'Birthday',
           subtitle:
             "Your birthday is a special moment. We're very happy to send the best wishes for you. Colleagues can send you birthday wishes on myFPT.",
-          icon: require('../assets/ic_favourite_birthday.png'),
+          icon: getIcon('ic_favourite_birthday.png'),
         },
       ],
     },
@@ -108,14 +115,14 @@ export default function AllAppsScreen() {
           title: 'News',
           subtitle:
             'A collection of latest news and notable events around the company',
-          icon: require('../assets/ic_favourite_news.png'),
+          icon: getIcon('ic_favourite_news.png'),
         },
         {
           id: 'star_ave',
           title: 'Star Ave',
           subtitle:
             'Recognise notable achievements within a business unit or within FPT',
-          icon: require('../assets/ic_favourite_star_ave.png'),
+          icon: getIcon('ic_favourite_star_ave.png'),
         },
       ],
     },
@@ -127,7 +134,7 @@ export default function AllAppsScreen() {
           title: 'Employee Info',
           subtitle:
             'Basic, non-confidential employee information (name, gender, department, etc.)',
-          icon: require('../assets/ic_favourite_employee_info.png'),
+          icon: getIcon('ic_favourite_employee_info.png'),
         },
       ],
     },
@@ -138,7 +145,7 @@ export default function AllAppsScreen() {
           id: 'game',
           title: 'Game',
           subtitle: 'Community-engaging games with Gold as rewards',
-          icon: require('../assets/ic_favourite_game.png'),
+          icon: getIcon('ic_favourite_game.png'),
         },
       ],
     },
