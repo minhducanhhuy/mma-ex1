@@ -13,7 +13,7 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 
 // Permanent GitHub raw assets URL from commit history so Snack Git import succeeds without binary upload errors
-const CDN_BASE = 'https://raw.githubusercontent.com/minhducanhhuy/mma-ex1/cf4666d/assets';
+const CDN_BASE = 'https://raw.githubusercontent.com/minhducanhhuy/mma-ex1/1a06b30/asset/ic_favourite';
 
 const getIcon = (filename) => ({
   uri: `${CDN_BASE}/${filename}`,
@@ -38,7 +38,7 @@ export default function AllAppsScreen() {
           title: 'Reward',
           subtitle:
             'Send colleagues a thank you note or reward Gold for exceptional contribution',
-          icon: getIcon('ic_favourite_gst_recognition.png'),
+          icon: getIcon('ic_favourite_recognition.png'),
         },
         {
           id: 'discipline',
@@ -58,8 +58,7 @@ export default function AllAppsScreen() {
           id: 'my_tasks',
           title: 'My Tasks',
           subtitle: '',
-          isVectorIcon: true,
-          vectorIconName: 'document-text',
+          icon: getIcon('ic_favorite_pear.webp'),
         },
       ],
     },
