@@ -1,38 +1,39 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Platform } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import {
+  HomeNavIcon,
+  AllAppsNavIcon,
+  GoldNavIcon,
+  GameNavIcon,
+  ProfileNavIcon,
+} from './CustomNavIcons';
 
 export default function BottomTabBar({ currentTab, onSelectTab }) {
   const tabs = [
     {
       id: 'Home',
       label: 'Home',
-      activeIcon: 'home',
-      inactiveIcon: 'home-outline',
+      IconComponent: HomeNavIcon,
     },
     {
       id: 'All Apps',
       label: 'All Apps',
-      activeIcon: 'folder',
-      inactiveIcon: 'folder-outline',
+      IconComponent: AllAppsNavIcon,
     },
     {
       id: 'Gold',
       label: 'Gold',
-      activeIcon: 'information-circle',
-      inactiveIcon: 'information-circle-outline',
+      IconComponent: GoldNavIcon,
     },
     {
       id: 'Game',
       label: 'Game',
-      activeIcon: 'game-controller',
-      inactiveIcon: 'game-controller-outline',
+      IconComponent: GameNavIcon,
     },
     {
       id: 'Profile',
       label: 'Profile',
-      activeIcon: 'person',
-      inactiveIcon: 'person-outline',
+      IconComponent: ProfileNavIcon,
     },
   ];
 
@@ -40,7 +41,7 @@ export default function BottomTabBar({ currentTab, onSelectTab }) {
     <View style={styles.tabBarContainer}>
       {tabs.map((tab) => {
         const isActive = currentTab === tab.id;
-        const iconName = isActive ? tab.activeIcon : tab.inactiveIcon;
+        const Icon = tab.IconComponent;
         const activeColor = '#1860C3';
         const inactiveColor = '#7E8B9B';
 
@@ -53,10 +54,10 @@ export default function BottomTabBar({ currentTab, onSelectTab }) {
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
             <View style={styles.iconWrapper} pointerEvents="none">
-              <Ionicons
-                name={iconName}
-                size={22}
+              <Icon
+                active={isActive}
                 color={isActive ? activeColor : inactiveColor}
+                size={24}
               />
             </View>
             <Text

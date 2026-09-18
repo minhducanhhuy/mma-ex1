@@ -9,15 +9,23 @@ import {
   StatusBar,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import {
+  MyProfileIcon,
+  SettingsIcon,
+  SupportIcon,
+  FAQIcon,
+  AdminIcon,
+  LogoutIcon,
+} from '../components/ProfileIcons';
 
 export default function ProfileScreen({ navigation }) {
   const menuItems = [
-    { id: '1', title: 'My Profile', icon: 'person' },
-    { id: '2', title: 'Settings', icon: 'settings-sharp' },
-    { id: '3', title: 'Support', icon: 'life-buoy-sharp' },
-    { id: '4', title: 'FAQ', icon: 'help-circle-sharp' },
-    { id: '5', title: 'Admin', icon: 'people-sharp' },
-    { id: '6', title: 'Logout', icon: 'log-out-sharp', isLogout: true },
+    { id: '1', title: 'My Profile', IconComponent: MyProfileIcon },
+    { id: '2', title: 'Settings', IconComponent: SettingsIcon },
+    { id: '3', title: 'Support', IconComponent: SupportIcon },
+    { id: '4', title: 'FAQ', IconComponent: FAQIcon },
+    { id: '5', title: 'Admin', IconComponent: AdminIcon },
+    { id: '6', title: 'Logout', IconComponent: LogoutIcon, isLogout: true },
   ];
 
   return (
@@ -48,33 +56,36 @@ export default function ProfileScreen({ navigation }) {
 
         {/* Menu Items List */}
         <View style={styles.menuContainer}>
-          {menuItems.map((item, index) => (
-            <TouchableOpacity
-              key={item.id}
-              activeOpacity={0.7}
-              style={[
-                styles.menuItem,
-                index === menuItems.length - 1 && styles.noBorderBottom,
-              ]}
-            >
-              <View style={styles.menuLeft}>
-                <View style={styles.iconContainer}>
-                  <Ionicons name={item.icon} size={22} color="#1860C3" />
+          {menuItems.map((item, index) => {
+            const Icon = item.IconComponent;
+            return (
+              <TouchableOpacity
+                key={item.id}
+                activeOpacity={0.7}
+                style={[
+                  styles.menuItem,
+                  index === menuItems.length - 1 && styles.noBorderBottom,
+                ]}
+              >
+                <View style={styles.menuLeft}>
+                  <View style={styles.iconContainer}>
+                    <Icon size={22} color="#1860C3" />
+                  </View>
+                  <Text
+                    style={[
+                      styles.menuTitle,
+                      item.isLogout && styles.logoutTitle,
+                    ]}
+                  >
+                    {item.title}
+                  </Text>
                 </View>
-                <Text
-                  style={[
-                    styles.menuTitle,
-                    item.isLogout && styles.logoutTitle,
-                  ]}
-                >
-                  {item.title}
-                </Text>
-              </View>
-              {!item.isLogout && (
-                <Ionicons name="chevron-forward" size={20} color="#C7C7CC" />
-              )}
-            </TouchableOpacity>
-          ))}
+                {!item.isLogout && (
+                  <Ionicons name="chevron-forward" size={20} color="#C7C7CC" />
+                )}
+              </TouchableOpacity>
+            );
+          })}
         </View>
 
         {/* App Version & Copyright Footer */}
