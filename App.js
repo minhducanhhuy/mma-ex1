@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, SafeAreaView, Platform } from 'react-native';
+import { StyleSheet, View, Platform } from 'react-native';
 
 import ProfileScreen from './screens/ProfileScreen';
 import AllAppsScreen from './screens/AllAppsScreen';
@@ -13,8 +13,13 @@ export default function App() {
       case 'All Apps':
         return <AllAppsScreen />;
       case 'Profile':
-      default:
         return <ProfileScreen />;
+      case 'Home':
+      case 'Gold':
+      case 'Game':
+      default:
+        // Màn hình trống cho Home, Gold, Game
+        return <View style={styles.emptyScreen} />;
     }
   };
 
@@ -52,6 +57,10 @@ const styles = StyleSheet.create({
     ...(Platform.OS === 'web' ? { borderRadius: 16 } : {}),
   },
   screenContainer: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+  },
+  emptyScreen: {
     flex: 1,
     backgroundColor: '#FFFFFF',
   },
