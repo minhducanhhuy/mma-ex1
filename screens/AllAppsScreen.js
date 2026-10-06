@@ -21,6 +21,7 @@ const getIcon = (filename) => ({
 
 export default function AllAppsScreen() {
   const [searchQuery, setSearchQuery] = useState('');
+  const [isGridView, setIsGridView] = useState(false);
 
   const sectionsData = [
     {
@@ -183,8 +184,8 @@ export default function AllAppsScreen() {
             </TouchableOpacity>
           )}
         </View>
-        <TouchableOpacity activeOpacity={0.7} style={styles.gridBtn}>
-          <Ionicons name="grid-outline" size={24} color="#6C6C70" />
+        <TouchableOpacity activeOpacity={0.7} style={styles.gridBtn} onPress={() => setIsGridView(!isGridView)}>
+          <Ionicons name={isGridView ? "list-outline" : "grid-outline"} size={24} color="#6C6C70" />
         </TouchableOpacity>
       </View>
 
@@ -194,30 +195,49 @@ export default function AllAppsScreen() {
             <View style={styles.sectionHeader}>
               <Text style={styles.sectionHeaderText}>{section.title}</Text>
             </View>
-            {section.data.map((item, index) => (
-              <TouchableOpacity
-                key={item.id}
-                activeOpacity={0.7}
-                style={[
-                  styles.appItemRow,
-                  index === section.data.length - 1 && styles.noBorderBottom,
-                ]}
-              >
-                <View style={styles.appIconWrapper}>
-                  {item.isVectorIcon ? (
-                    <Ionicons name={item.vectorIconName} size={24} color="#0A84FF" />
-                  ) : (
-                    <Image source={item.icon} style={styles.appIcon} resizeMode="contain" />
-                  )}
-                </View>
-                <View style={styles.appTextContainer}>
-                  <Text style={styles.appTitle}>{item.title}</Text>
-                  {item.subtitle ? (
-                    <Text style={styles.appSubtitle}>{item.subtitle}</Text>
-                  ) : null}
-                </View>
-              </TouchableOpacity>
-            ))}
+            {isGridView ? (
+              <View style={styles.gridSectionContent}>
+                {section.data.map((item) => (
+                  <TouchableOpacity key={item.id} activeOpacity={0.7} style={styles.gridItemContainer}>
+                    <View style={styles.gridIconWrapper}>
+                      {item.isVectorIcon ? (
+                        <Ionicons name={item.vectorIconName} size={24} color="#0A84FF" />
+                      ) : (
+                        <Image source={item.icon} style={styles.gridAppIcon} resizeMode="contain" />
+                      )}
+                    </View>
+                    <Text style={styles.gridAppTitle} numberOfLines={2}>
+                      {item.title}
+                    </Text>
+                  </TouchableOpacity>
+                ))}
+              </View>
+            ) : (
+              section.data.map((item, index) => (
+                <TouchableOpacity
+                  key={item.id}
+                  activeOpacity={0.7}
+                  style={[
+                    styles.appItemRow,
+                    index === section.data.length - 1 && styles.noBorderBottom,
+                  ]}
+                >
+                  <View style={styles.appIconWrapper}>
+                    {item.isVectorIcon ? (
+                      <Ionicons name={item.vectorIconName} size={24} color="#0A84FF" />
+                    ) : (
+                      <Image source={item.icon} style={styles.appIcon} resizeMode="contain" />
+                    )}
+                  </View>
+                  <View style={styles.appTextContainer}>
+                    <Text style={styles.appTitle}>{item.title}</Text>
+                    {item.subtitle ? (
+                      <Text style={styles.appSubtitle}>{item.subtitle}</Text>
+                    ) : null}
+                  </View>
+                </TouchableOpacity>
+              ))
+            )}
           </View>
         ))}
       </ScrollView>
@@ -316,5 +336,36 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: '#6C6C70',
     lineHeight: 18,
+  },
+  gridSectionContent: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    paddingTop: 16,
+    paddingBottom: 8,
+  },
+  gridItemContainer: {
+    width: '25%',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  gridIconWrapper: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    backgroundColor: '#F7F8FA',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 8,
+  },
+  gridAppIcon: {
+    width: 32,
+    height: 32,
+  },
+  gridAppTitle: {
+    fontSize: 13,
+    fontWeight: '500',
+    color: '#1C1C1E',
+    textAlign: 'center',
+    paddingHorizontal: 4,
   },
 });

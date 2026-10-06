@@ -5,6 +5,23 @@ import ProfileScreen from './screens/ProfileScreen';
 import AllAppsScreen from './screens/AllAppsScreen';
 import BottomTabBar from './components/BottomTabBar';
 
+if (Platform.OS === 'web') {
+  try {
+    const style = document.createElement('style');
+    style.textContent = `
+      html, body, #root {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex: 1;
+        margin: 0;
+        padding: 0;
+      }
+    `;
+    document.head.appendChild(style);
+  } catch (e) {}
+}
+
 export default function App() {
   const [currentTab, setCurrentTab] = useState('Profile');
 
